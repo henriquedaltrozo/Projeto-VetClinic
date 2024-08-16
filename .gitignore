@@ -2,4 +2,3 @@
 node_modules
 /nbproject/private/
 nbproject
-db/app.db
