@@ -1,26 +1,30 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db/connection");
+const Tutor = require("./Tutor");
 
-const Tutor = db.define("Tutor", {
+const Pet = db.define("Pet", {
   name: {
     type: DataTypes.STRING,
     required: true,
   },
-  phone: {
-    type: DataTypes.INTEGER,
+  species: {
+    type: DataTypes.STRING,
     required: true,
   },
-  email: {
+  carry: {
     type: DataTypes.STRING,
+  },
+  weight: {
+    type: DataTypes.STRING,
+    required: true,
   },
   date_of_birth: {
     type: DataTypes.STRING,
     required: true,
   },
-  zip_code: {
-    type: DataTypes.STRING,
-    required: true,
-  },
 });
 
-module.exports = Tutor;
+Tutor.hasMany(Pet, { foreignKey: 'TutorId' });
+Pet.belongsTo(Tutor, { foreignKey: 'TutorId' });
+
+module.exports = Pet;
